@@ -1,59 +1,167 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <title>Buffer-guess-who by pandammonium</title>
+    <meta charset="UTF-8">
+    <title>Buffer Guess Who</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
 
   <body>
-    <div id="container">
-      <div class="inner">
+    <script type="text/javascript">
+      console.log('Top of the page');
+    </script>
+    <h1>Buffer Guess Who!</h1>
+    <p>Lost track of all the people at Buffer and their <abbr title="wives and girlfriends">WAGs</abbr> and <abbr title="husbands and boyfriends">HABs</abbr>?  Play this game to learn their names!</p>
+    <form action="" method="GET" autocomplete="off" name="buffer-guess-who">
+      <img id="image" height="200px" alt="Buffer (WAG/HAB)">
+      <fieldset id="guesswho">
+        <legend>Who is this?</legend>
+        <input type="radio" id="choice1" name="name" value="">
+        <label for="choice1" id="choice1text"></label>
+        <br>
+        <input type="radio" id="choice2" name="name" value="">
+        <label for="choice2" id="choice2text"></label>
+        <br>
+        <input type="radio" id="choice3" name="name" value="">
+        <label for="choice3" id="choice3text"></label>
+      </fieldset>
+      <input id="submit" type="submit" value="Submit"?
+    </form>
+    <p id="notice"></p>
+    <script type="text/javascript">
+      console.log('Showing image and options.');
+    </script>
+    <p id="play-again"><a href='#'>Play again!</a></p>
 
-        <header>
-          <h1>Buffer-guess-who</h1>
-          <h2>Guess Who game for Buffer people and their WAGs and HABs.</h2>
-        </header>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript">
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/pandammonium/buffer-guess-who/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/pandammonium/buffer-guess-who/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/pandammonium/buffer-guess-who" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
+      var data = {
+        // Need at least three images to prevent an infinite loop because three options are given.
+/*        'caity_colin.jpg'     : 'Caity and Colin',
+        'nicole_john.jpg'     : 'Nicole and John (aka Rusty)',
+        'mike_maria.jpg'      : 'Mike and Maria',
+        'sunil_avanti.jpg'    : 'Sunil and Avanti',
+        'danieka_michael.jpg' : 'Danieka and Michael',
+        'amber_adam.jpg'      : 'Amber and Adam',
+        'caity.jpg'           : 'Caity',
+        'colin.jpg'           : 'Colin',
+        'nicole.jpg'          : 'Nicole',
+        'john.jpg'            : 'John (aka Rusty)',
+        'mike.jpg'            : 'Mike',
+        'maria.jpg'           : 'Maria',
+        'sunil.jpg'           : 'Sunil',
+        'avanti.jpg'          : 'Avanti',
+        'danieka.jpg'         : 'Danieka',*/
+        'michael.jpg'         : 'Michael',
+        'amber.jpg'           : 'Amber',
+        'adam.jpg'            : 'Adam'
+      };
+      var images = _.keys(data);
+      var answer_index;
+      var seen = {};
+      var num_seen = 0;
+      console.log('Initialised');
 
-        <hr>
+      $(function(){
 
-        <section id="main_content">
-          <h1>
-<a id="buffer-guess-who" class="anchor" href="#buffer-guess-who" aria-hidden="true"><span class="octicon octicon-link"></span></a>buffer-guess-who</h1>
+        function reset(){
+          $('#guesswho').show();
+          $('#submit').show();
+          $('#play-again').hide();
+          var selected = $("input[type='radio'][name='name']:checked").prop('checked', false);
 
-<p>Guess Who game for Buffer people and their WAGs and HABs.</p>
+          if ( images.length > 2 ) {
+            while (true) {
+              answer_index = Math.floor ( images.length * Math.random() );
+              if ( !seen[answer_index] ) { 
+                break;
+              }
+            }
+            seen[answer_index] = true;
+            ++num_seen;
+            console.log( 'answer index: ' + answer_index );
+            console.log( 'seen: ' + seen );
+            console.log( 'number seen: ' + num_seen );
+            $('#image').attr('src', 'img/' + images[answer_index]);
+            $('#notice').html('');
+            $('#play-again').hide();
 
-<h1>
-<a id="about" class="anchor" href="#about" aria-hidden="true"><span class="octicon octicon-link"></span></a>About</h1>
+            var choices = {};
+            choices[answer_index] = true;
 
-<p>For each image shown, guess the name of the person or people in the image.</p>
+            while (true) {
+              var index = Math.floor ( images.length * Math.random() );
+              if ( !choices[index] ) { 
+                break;
+              }
+            }
+            choices[index] = true;
+            while (true) {
+              var index = Math.floor ( images.length * Math.random() );
+              if ( !choices[index] ) { 
+                break;
+              }
+            }
+            choices[index] = true;
+            console.log(choices);
+            var image_choices = _.map(_.keys(choices), function(c){
+              return images[c];
+            });
+            console.log(image_choices);
+            
+            image_choices = _.shuffle(image_choices);
 
-<h1>
-<a id="notes" class="anchor" href="#notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes</h1>
+            $('#choice1').val(image_choices[0]);
+            $('#choice1text').text(data[image_choices[0]]);
 
-<p>The app is very rudimentary, for example, it can't tell the difference between an image with one person in it and an image with two people in it.</p>
-        </section>
+            $('#choice2').val(image_choices[1]);
+            $('#choice2text').text(data[image_choices[1]]);
 
-        <footer>
-          Buffer-guess-who is maintained by <a href="https://github.com/pandammonium">pandammonium</a><br>
-          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
+            $('#choice3').val(image_choices[2]);
+            $('#choice3text').text(data[image_choices[2]]);
+          } else {
+            alert('Not enough images.  At least three images are required.');
+            console.log('Make sure there are at least three images given in \'data\'.  Image data: ' + images);
+            return false;
+          }
+        };
 
-        
-      </div>
-    </div>
+        $('#play-again').click(function(e){
+          e.preventDefault();
+          reset();
+          return false;
+        });
+
+        $('#submit').click(function(){
+          var selected = $("input[type='radio'][name='name']:checked").val();
+          console.log(selected);
+          if ( selected == images[answer_index] ) {
+            console.log('Right!');
+            if (num_seen == images.length) {
+              console.log('That\'s all folks!');
+              $('#notice').html('You got them all right.  Well done!');
+              $('#play-again').hide();
+              $('#guesswho').hide();
+              $('#submit').hide();
+              return;
+            } else {
+              $('#notice').html('Yay, that is ' + data[selected] + ' &mdash; well done!');
+              $('#play-again').show();
+              $('#guesswho').hide();
+              $('#submit').hide();
+            }
+          } else {
+            console.log('Wrong!');
+            $('#notice').html('Oh noes, that\'s not ' + data[selected] + '!  Try again.');
+          }
+        });
+
+        reset();
+
+      });
+    </script>
   </body>
+
 </html>
