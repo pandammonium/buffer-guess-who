@@ -1,8 +1,19 @@
-@media (max-width: 699px) and (min-width: 520px) {
+/*@media (max-width: 699px) and (min-width: 520px) {
   @viewport {
     width: 640px;
   }
 }
+@viewport {
+    initial-scale: 1.0;
+    width: device-width;
+    zoom: 0.5;
+}*/
+/*
+@media only screen and (orientation: porttrait) {
+    img {
+        zoom: 1.5;
+    }
+}*/
 
 body {
   font-family: sans-serif;

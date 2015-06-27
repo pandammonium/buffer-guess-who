@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Buffer Guess Who</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <body>
@@ -41,6 +42,7 @@
 
       var data = {
         // Need at least three images to prevent an infinite loop because three options are given.
+        // Only use underscores in file names to separate multiple people.
         'caity_colin.jpg'     : 'Caity and Colin',
         'nicole_john.jpg'     : 'Nicole and John (aka Rusty)',
         'mike_maria.jpg'      : 'Mike and Maria',
@@ -101,14 +103,26 @@
             while (true) {
               var index = Math.floor ( images.length * Math.random() );
               if ( !choices[index] ) { 
-                break;
+                if ( ( ( images[index].indexOf('_') != -1 ) && ( images[answer_index].indexOf('_') != -1 ) ) ||
+                     ( ( images[index].indexOf('_') == -1 ) && ( images[answer_index].indexOf('_') == -1 ) ) ) {
+                  console.log('In the first one!');
+                  console.log('index: ' + images[index].indexOf('_') + ' answer index: ' + images[answer_index].indexOf('_') );
+                  console.log('answer: ' + images[answer_index]);
+                  break;
+                }
               }
             }
             choices[index] = true;
             while (true) {
               var index = Math.floor ( images.length * Math.random() );
               if ( !choices[index] ) { 
-                break;
+                if ( ( ( images[index].indexOf('_') != -1 ) && ( images[answer_index].indexOf('_') != -1 ) ) ||
+                     ( ( images[index].indexOf('_') == -1 ) && ( images[answer_index].indexOf('_') == -1 ) ) ) {
+                  console.log('In the second one!');
+                  console.log('index: ' + images[index].indexOf('_') + ' answer index: ' + images[answer_index].indexOf('_') );
+                  console.log('answer: ' + data[images[answer_index]]);
+                  break;
+                }
               }
             }
             choices[index] = true;
