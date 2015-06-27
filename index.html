@@ -8,11 +8,8 @@
   </head>
 
   <body>
-    <script type="text/javascript">
-      console.log('Top of the page');
-    </script>
     <h1>Buffer Guess Who!</h1>
-    <p>Lost track of all the people at Buffer and their <abbr title="wives and girlfriends">WAGs</abbr> and <abbr title="husbands and boyfriends">HABs</abbr>?  Play this game to learn their names!</p>
+    <p>Lost track of all the people at <a href="https://buffer.com/" title="Buffer">Buffer</a> and their <abbr title="wives and girlfriends">WAGs</abbr> and <abbr title="husbands and boyfriends">HABs</abbr>?  Play this game to learn their names!</p>
     <form method="GET" autocomplete="off" name="buffer-guess-who">
       <img id="image" height="200" alt="Buffer (WAG/HAB)">
       <fieldset id="guesswho">
@@ -30,9 +27,6 @@
     </form>
     <p id="notice"></p>
     <p id="score"></p>
-    <script type="text/javascript">
-      console.log('Showing image and options.');
-    </script>
     <button id="play-next" class="buttonish"><a href='#'>Bring on the next one!</a></button>
     <button id="start-again" class="buttonish"><a href=''>Play again?</a></button>
 
@@ -99,15 +93,15 @@
 
             var choices = {};
             choices[answer_index] = true;
+            console.log('Answer: ' + data[images[answer_index]] + ' — ' + images[answer_index]);
 
             while (true) {
               var index = Math.floor ( images.length * Math.random() );
               if ( !choices[index] ) { 
                 if ( ( ( images[index].indexOf('_') != -1 ) && ( images[answer_index].indexOf('_') != -1 ) ) ||
                      ( ( images[index].indexOf('_') == -1 ) && ( images[answer_index].indexOf('_') == -1 ) ) ) {
-                  console.log('In the first one!');
-                  console.log('index: ' + images[index].indexOf('_') + ' answer index: ' + images[answer_index].indexOf('_') );
-                  console.log('answer: ' + images[answer_index]);
+                  console.log('Option 2: ' + data[images[index]] + ' — ' + images[index]);
+                  console.log('index: ' + images[index].indexOf('_') + '; answer index: ' + images[answer_index].indexOf('_') );
                   break;
                 }
               }
@@ -118,9 +112,8 @@
               if ( !choices[index] ) { 
                 if ( ( ( images[index].indexOf('_') != -1 ) && ( images[answer_index].indexOf('_') != -1 ) ) ||
                      ( ( images[index].indexOf('_') == -1 ) && ( images[answer_index].indexOf('_') == -1 ) ) ) {
-                  console.log('In the second one!');
-                  console.log('index: ' + images[index].indexOf('_') + ' answer index: ' + images[answer_index].indexOf('_') );
-                  console.log('answer: ' + data[images[answer_index]]);
+                  console.log('Option 3: ' + data[images[index]] + ' — ' + images[index]);
+                  console.log('index: ' + images[index].indexOf('_') + '; answer index: ' + images[answer_index].indexOf('_') );
                   break;
                 }
               }
