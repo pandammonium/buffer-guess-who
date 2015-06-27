@@ -1,0 +1,48 @@
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  margin: auto;
+  text-align: center;
+  width: 75%;
+}
+
+fieldset {
+  font-size: 120%;
+  display: block;
+  margin: auto;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  width: 25%;
+}
+legend {
+  text-align: center;
+}
+label {
+  cursor: default;
+  font-size: 80%;
+}
+
+fieldset, img, input[type=submit] {
+  border: 4px groove hsl(100, 50%, 50%);
+  text-align: left;
+}
+
+img {
+/*  display: block;
+  margin: auto;*/
+  margin-bottom: 3ex;
+  padding: 2px;
+  max-width: 50%;
+}
+
+input[type=submit] {
+/*  display: block;*/
+  font-size: 100%;
+/*  margin: auto;*/
+  margin-top: 3ex;
+}
+input[type=submit]:hover {
+  border: 4px ridge hsl(100, 50%, 50%);
+}
