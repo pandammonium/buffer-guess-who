@@ -12,8 +12,8 @@
     </script>
     <h1>Buffer Guess Who!</h1>
     <p>Lost track of all the people at Buffer and their <abbr title="wives and girlfriends">WAGs</abbr> and <abbr title="husbands and boyfriends">HABs</abbr>?  Play this game to learn their names!</p>
-    <form action="" method="GET" autocomplete="off" name="buffer-guess-who">
-      <img id="image" height="200px" alt="Buffer (WAG/HAB)">
+    <form method="GET" autocomplete="off" name="buffer-guess-who">
+      <img id="image" height="200" alt="Buffer (WAG/HAB)">
       <fieldset id="guesswho">
         <legend>Who is this?</legend>
         <input type="radio" id="choice1" name="name" value="">
@@ -151,7 +151,7 @@
               if ( right_first_time ) {
                 ++num_right_guesses;
               }
-              $('#notice').html('Yay, that is ' + data[selected] + ' &mdash; well done!');
+              $('#notice').html('Yay, this is ' + data[selected] + ' &mdash; well done!');
               $('#score').html('You scored ' + num_right_guesses + '/' + num_seen + '!');
               $('#play-next').hide();
               $('#guesswho').hide();
@@ -162,15 +162,17 @@
               if ( right_first_time ) {
                 ++num_right_guesses;
               }
-              $('#notice').html('Yay, that is ' + data[selected] + ' &mdash; well done!');
+              $('#notice').html('Yay, this is ' + data[selected] + ' &mdash; well done!');
               $('#play-next').show();
               $('#guesswho').hide();
               $('#submit').hide();
             }
-          } else {
+          } else if ( selected ) {
             console.log('Wrong!');
             right_first_time = false;
-            $('#notice').html('Oh noes, that\'s not ' + data[selected] + '!  Try again.');
+            $('#notice').html('Oh noes, this is not ' + data[selected] + '!  Try again.');
+          } else {
+            $('#notice').html('Please pick an option!');
           }
         });
 
