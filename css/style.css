@@ -1,9 +1,35 @@
+*, *:before, *:after {
+  box-sizing: content-box;
+}
+
+/*@media (max-width: 699px) and (min-width: 520px) {
+  @viewport {
+    width: 640px;
+  }
+}
+@viewport {
+    initial-scale: 1.0;
+    width: device-width;
+    zoom: 0.5;
+}*/
+/*
+@media only screen and (orientation: porttrait) {
+    img {
+        zoom: 1.5;
+    }
+}*/
+
 body {
+  display: block;
   font-family: sans-serif;
   font-size: 16px;
   margin: auto;
   text-align: center;
   width: 75%;
+}
+
+abbr {
+  cursor: help;
 }
 
 fieldset {
@@ -27,16 +53,12 @@ label {
 
 button,
 fieldset,
+figure,
 img,
 input[type=submit] {
   background-color: hsl(270, 90%, 90%);
   border: 4px groove hsl(270, 50%, 50%);
   color: inherit;
-}
-
-img {
-  margin-bottom: 3ex;
-  max-width: 50%;
 }
 
 button,
@@ -59,9 +81,27 @@ button a {
 /* Rounded corners */
 button,
 fieldset,
+figure,
 img,
 input[type=submit] {
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
+}
+
+figure { 
+  display: inline-block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 1ex;
+  margin-right: 1ex;
+  min-width: calc(25% - 8px);
+  max-width: calc(50% - 8px);
+}
+figcaption {
+  display: block;
+}
+img {
+  margin: 1em 1ex;
+  padding: 0;
 }
