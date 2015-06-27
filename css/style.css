@@ -1,23 +1,41 @@
 *, *:before, *:after {
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
-/*@media (max-width: 699px) and (min-width: 520px) {
+/* Small screen browsers */
+body {
+  width: 100%;
+}
+fieldset {
+  width: 80%;
+}
+
+/* Medium-sized screen browsers */
+@media only screen and (min-width: 600px) {
   @viewport {
-    width: 640px;
+    width: 600px;
+  }
+  body {
+    width: 75%;
+  }
+  fieldset {
+    width: 200px;
   }
 }
-@viewport {
-    initial-scale: 1.0;
-    width: device-width;
-    zoom: 0.5;
-}*/
-/*
-@media only screen and (orientation: porttrait) {
-    img {
-        zoom: 1.5;
-    }
-}*/
+
+/* Larger screen browsers */
+@media only screen and (min-width: 740px) {
+  @viewport {
+    width: 100%;
+  }
+  body {
+    width: 75%;
+  }
+  fieldset {
+    width: 300px;
+  }
+}
+
 
 body {
   display: block;
@@ -25,7 +43,6 @@ body {
   font-size: 16px;
   margin: auto;
   text-align: center;
-  width: 75%;
 }
 
 abbr {
@@ -41,7 +58,6 @@ fieldset {
   padding-left: 0.75em;
   padding-right: 0.75em;
   text-align: left;
-  width: 25%;
 }
 legend {
   text-align: center;
@@ -96,7 +112,6 @@ figure {
   margin-left: 1ex;
   margin-right: 1ex;
   min-width: calc(25% - 8px);
-  max-width: calc(50% - 8px);
 }
 figcaption {
   display: block;
