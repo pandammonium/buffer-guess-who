@@ -26,7 +26,7 @@
         <input type="radio" id="choice3" name="name" value="">
         <label for="choice3" id="choice3text"></label>
       </fieldset>
-      <input id="submit" type="submit" value="Submit"?
+      <input id="submit" type="submit" value="Submit">
     </form>
     <p id="notice"></p>
     <p id="score"></p>
@@ -64,7 +64,7 @@
       var answer_index;
       var seen = {};
       var num_seen = 0;
-      console.log('Initialised');
+//      console.log('Initialised');
       var num_guesses = 0;
       var num_right_guesses = 0;
       var right_first_time;
@@ -91,24 +91,24 @@
             seen[answer_index] = true;
             ++num_seen;
             $('#counter').html('Image ' + num_seen + ' of ' + num_images + '.');
-            console.log( 'answer index: ' + answer_index );
-            console.log( 'seen: ' + seen );
-            console.log( 'number seen: ' + num_seen );
+//            console.log( 'answer index: ' + answer_index );
+//            console.log( 'seen: ' + seen );
+//            console.log( 'number seen: ' + num_seen );
             $('#image').attr('src', 'img/' + images[answer_index]);
             $('#notice').html('');
             $('#play-next').hide();
 
             var choices = {};
             choices[answer_index] = true;
-            console.log('Answer: ' + data[images[answer_index]] + ' — ' + images[answer_index]);
+//            console.log('Answer: ' + data[images[answer_index]] + ' — ' + images[answer_index]);
 
             while (true) {
               var index = Math.floor ( num_images * Math.random() );
               if ( !choices[index] ) { 
                 if ( ( ( images[index].indexOf('_') != -1 ) && ( images[answer_index].indexOf('_') != -1 ) ) ||
                      ( ( images[index].indexOf('_') == -1 ) && ( images[answer_index].indexOf('_') == -1 ) ) ) {
-                  console.log('Option 2: ' + data[images[index]] + ' — ' + images[index]);
-                  console.log('index: ' + images[index].indexOf('_') + '; answer index: ' + images[answer_index].indexOf('_') );
+//                  console.log('Option 2: ' + data[images[index]] + ' — ' + images[index]);
+//                  console.log('index: ' + images[index].indexOf('_') + '; answer index: ' + images[answer_index].indexOf('_') );
                   break;
                 }
               }
@@ -119,18 +119,18 @@
               if ( !choices[index] ) { 
                 if ( ( ( images[index].indexOf('_') != -1 ) && ( images[answer_index].indexOf('_') != -1 ) ) ||
                      ( ( images[index].indexOf('_') == -1 ) && ( images[answer_index].indexOf('_') == -1 ) ) ) {
-                  console.log('Option 3: ' + data[images[index]] + ' — ' + images[index]);
-                  console.log('index: ' + images[index].indexOf('_') + '; answer index: ' + images[answer_index].indexOf('_') );
+//                  console.log('Option 3: ' + data[images[index]] + ' — ' + images[index]);
+//                  console.log('index: ' + images[index].indexOf('_') + '; answer index: ' + images[answer_index].indexOf('_') );
                   break;
                 }
               }
             }
             choices[index] = true;
-            console.log(choices);
+//            console.log(choices);
             var image_choices = _.map(_.keys(choices), function(c){
               return images[c];
             });
-            console.log(image_choices);
+//            console.log(image_choices);
             
             image_choices = _.shuffle(image_choices);
 
@@ -144,7 +144,7 @@
             $('#choice3text').text(data[image_choices[2]]);
           } else {
             alert('Not enough images.  At least three images are required.');
-            console.log('Make sure there are at least three images given in \'data\'.  Image data: ' + images);
+//            console.log('Make sure there are at least three images given in \'data\'.  Image data: ' + images);
             return false;
           }
         };
@@ -155,13 +155,14 @@
           return false;
         });
 
-        $('#submit').click(function(){
+        $('#submit').click(function(e){
+          e.preventDefault();
           var selected = $("input[type='radio'][name='name']:checked").val();
-          console.log(selected);
+//          console.log(selected);
           if ( selected == images[answer_index] ) {
-            console.log('Right!');
+//            console.log('Right!');
             if (num_seen == images.length) {
-              console.log('That\'s all folks!');
+//              console.log('That\'s all folks!');
               if ( right_first_time ) {
                 ++num_right_guesses;
               }
@@ -183,12 +184,13 @@
               $('#submit').hide();
             }
           } else if ( selected ) {
-            console.log('Wrong!');
+//            console.log('Wrong!');
             right_first_time = false;
             $('#notice').html('Oh noes, this is not ' + data[selected] + '!  Try again.');
           } else {
             $('#notice').html('Please pick an option!');
           }
+          return false;
         });
 
         reset();
