@@ -236,7 +236,7 @@ figure div svg#loading-icon {
 }
 .layer {
   -webkit-animation: 2s linear infinite;
-  animation: 2s linear infinite;
+  animation: 0.5s linear infinite;
 }
 .layer1 {
   -webkit-animation-name: layer1;
