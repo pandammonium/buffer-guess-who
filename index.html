@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <h1>    
+    <h1>
       <!-- Buffer logo -->
       <svg width="2em" height="2ex" x="0px" y="0px" viewBox="0 0 313.3 321.4" style="enable-background:new 0 0 313.3 321.4;" xml:space="preserve">
         <path class="logo" d="M157.1,0c3.8,0,7.9,1.5,11.4,3.2c45.6,21.1,91.2,42.4,136.7,63.8c3.3,1.5,8,2.1,8.1,7c0.1,5-4.7,5.6-7.9,7.1
@@ -129,7 +129,7 @@
           if ( num_images > 2 ) {
             while (true) {
               answer_index = Math.floor ( num_images * Math.random() );
-              if ( !seen[answer_index] ) { 
+              if ( !seen[answer_index] ) {
                 break;
               }
             }
@@ -145,7 +145,7 @@
             console.log($('#the-figure').css("marginTop"));
             console.log($('#the-figure').css("marginBottom"));
             console.log($('#the-figure').css("paddingTop"));
-            alert('image about to be loaded');
+            // alert('image about to be loaded');
             $('#image').load( function(){
               console.log($('#the-figure').attr("marginTop", 0));
               console.log($('#image').attr("marginTop", 0));
@@ -182,7 +182,7 @@
 
             while (true) {
               var index = Math.floor ( num_images * Math.random() );
-              if ( !choices[index] ) { 
+              if ( !choices[index] ) {
                 if ( ( ( images[index].indexOf('_') != -1 ) && ( images[answer_index].indexOf('_') != -1 ) ) ||
                      ( ( images[index].indexOf('_') == -1 ) && ( images[answer_index].indexOf('_') == -1 ) ) ) {
                   break;
@@ -192,7 +192,7 @@
             choices[index] = true;
             while (true) {
               var index = Math.floor ( num_images * Math.random() );
-              if ( !choices[index] ) { 
+              if ( !choices[index] ) {
                 if ( ( ( images[index].indexOf('_') != -1 ) && ( images[answer_index].indexOf('_') != -1 ) ) ||
                      ( ( images[index].indexOf('_') == -1 ) && ( images[answer_index].indexOf('_') == -1 ) ) ) {
                   break;
@@ -203,7 +203,7 @@
             var image_choices = _.map(_.keys(choices), function(c){
               return images[c];
             });
-            
+
             image_choices = _.shuffle(image_choices);
 
             $('#choice1').val(image_choices[0]);
