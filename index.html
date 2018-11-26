@@ -75,34 +75,21 @@
         'nicole_john.jpg'     : 'Nicole and John (aka Rusty)',
 //        'mike_maria-640x640.jpg'  : 'Mike and Maria',// square images are broken
         'mike_maria-518x572.jpg'  : 'Mike and Maria',
-        'sunil_avanti.jpg'    : 'Sunil and Avanti',
         'danieka_michael.jpg' : 'Danieka and Michael',
         'amber_adam.jpg'      : 'Amber and Adam',
-        'niel_saffron.jpg'    : 'Niel and Saffron',
-        'jonathan_patrik.jpg' : 'Jonathan and Patrik',
         'jose_miriam.jpg'     : 'José and Miriam',
-        'kat_phil.jpg'        : 'Kat and Phil',
         'caity.jpg'           : 'Caity',
         'colin.jpg'           : 'Colin',
         'nicole.jpg'          : 'Nicole',
         'john.jpg'            : 'John (aka Rusty)',
         'mike.jpg'            : 'Mike',
         'maria.jpg'           : 'Maria',
-        'sunil.jpg'           : 'Sunil',
-        'avanti.jpg'          : 'Avanti',
         'danieka.jpg'         : 'Danieka',
         'michael.jpg'         : 'Michael',
         'amber.jpg'           : 'Amber',
         'adam.jpg'            : 'Adam',
-        'niel.jpg'            : 'Niel',
-        'saffron.jpg'         : 'Saffron',
-        'jonathan.jpg'        : 'Jonathan',
-        'patrik.jpg'          : 'Patrik',
         'jose.jpg'            : 'José',
         'miriam.jpg'          : 'Miriam',
-        'philippe.jpg'        : 'Philippe',
-        'kat.jpg'             : 'Kat',
-        'phil.jpg'            : 'Phil'
       };
       var images = _.keys(data);
       var answer_index;
@@ -137,43 +124,43 @@
             ++num_seen;
             $('#counter').html('Image ' + num_seen + ' of ' + num_images + '.');
             $('#loading-icon').show();
-            console.log('Image attributes before load (margin top, margin bottom, padding):');
-            console.log($('#image').css("marginTop"));
-            console.log($('#image').css("marginBottom"));
-            console.log($('#image').css("paddingTop"));
-            console.log('Figure attributes before load (margin top, margin bottom, padding):');
-            console.log($('#the-figure').css("marginTop"));
-            console.log($('#the-figure').css("marginBottom"));
-            console.log($('#the-figure').css("paddingTop"));
+            // console.log('Image attributes before load (margin top, margin bottom, padding):');
+            // console.log($('#image').css("marginTop"));
+            // console.log($('#image').css("marginBottom"));
+            // console.log($('#image').css("paddingTop"));
+            // console.log('Figure attributes before load (margin top, margin bottom, padding):');
+            // console.log($('#the-figure').css("marginTop"));
+            // console.log($('#the-figure').css("marginBottom"));
+            // console.log($('#the-figure').css("paddingTop"));
             // alert('image about to be loaded');
             $('#image').load( function(){
-              console.log($('#the-figure').attr("marginTop", 0));
-              console.log($('#image').attr("marginTop", 0));
+              // console.log($('#the-figure').attr("marginTop", 0));
+              // console.log($('#image').attr("marginTop", 0));
 
               $('#image').attr("display","hidden");
-              console.log('Image display attribute:');
-              console.log($('#image').css("display"));
+              // console.log('Image display attribute:');
+              // console.log($('#image').css("display"));
               $('#loading-icon').hide();
               $('#image').removeClass('no-border-class');
 
-              console.log('image loaded');
-              console.log('Image attributes during load (margin top, margin bottom, padding):');
-              console.log($('#image').css("marginTop"));
-              console.log($('#image').css("marginBottom"));
-              console.log($('#image').css("paddingTop"));
-              console.log('Figure attributes during load (margin top, margin bottom, padding):');
-              console.log($('#the-figure').css("marginTop"));
-              console.log($('#the-figure').css("marginBottom"));
-              console.log($('#the-figure').css("paddingTop"));
+            //   console.log('image loaded');
+            //   console.log('Image attributes during load (margin top, margin bottom, padding):');
+            //   console.log($('#image').css("marginTop"));
+            //   console.log($('#image').css("marginBottom"));
+            //   console.log($('#image').css("paddingTop"));
+            //   console.log('Figure attributes during load (margin top, margin bottom, padding):');
+            //   console.log($('#the-figure').css("marginTop"));
+            //   console.log($('#the-figure').css("marginBottom"));
+            //   console.log($('#the-figure').css("paddingTop"));
             }).attr('src', 'img/' + images[answer_index]);
-            console.log('Image attributes after load (margin top, margin bottom, padding):');
-            console.log($('#image').css("marginTop"));
-            console.log($('#image').css("marginBottom"));
-            console.log($('#image').css("paddingTop"));
-            console.log('Figure attributes after load (margin top, margin bottom, padding):');
-            console.log($('#the-figure').css("marginTop"));
-            console.log($('#the-figure').css("marginBottom"));
-            console.log($('#the-figure').css("paddingTop"));
+            // console.log('Image attributes after load (margin top, margin bottom, padding):');
+            // console.log($('#image').css("marginTop"));
+            // console.log($('#image').css("marginBottom"));
+            // console.log($('#image').css("paddingTop"));
+            // console.log('Figure attributes after load (margin top, margin bottom, padding):');
+            // console.log($('#the-figure').css("marginTop"));
+            // console.log($('#the-figure').css("marginBottom"));
+            // console.log($('#the-figure').css("paddingTop"));
             $('#notice').html('');
             $('#play-next').hide();
 
