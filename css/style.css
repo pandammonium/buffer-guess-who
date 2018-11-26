@@ -124,11 +124,11 @@ input[type=submit] {
 
 figure { 
   display: inline-block;
-  margin-top: 1em;
+/*  margin-top: 1ex;
   margin-bottom: 1em;
   margin-left: 1ex;
   margin-right: 1ex;
-  min-width: calc(25% - 8px);
+*/  min-width: calc(25% - 8px);
 }
 figcaption {
   display: block;
@@ -160,10 +160,10 @@ figure div svg#loading-icon {
   position: absolue;
   top: 100%;
   left: 0%;
-  -ms-transform: translateY(750%);
-  -moz-transform: translateY(750%);
-  -webkit-transform: translateY(750%);
-  transform: translateY(750%);
+  -ms-transform: translateY(250%);
+  -moz-transform: translateY(250%);
+  -webkit-transform: translateY(250%);
+  transform: translateY(250%);
 }
 .layer {
   fill: hsl(270, 50%, 50%);

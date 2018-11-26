@@ -26,9 +26,9 @@
     </h1>
     <p>Lost track of all the people at <a href="https://buffer.com/" title="Buffer">Buffer</a> and their <abbr title="wives and girlfriends">WAGs</abbr> and <abbr title="husbands and boyfriends">HABs</abbr>?  Play this game to learn their names!</p>
     <form method="GET" autocomplete="off" name="buffer-guess-who">
-      <figure>
+      <figure id="the-figure">
         <div>
-          <svg id="loading-icon" width="2em" height="2ex" x="0px" y="0px" viewBox="0 0 313.3 321.4" style="enable-background:new 0 0 313.3 321.4;" xml:space="preserve">
+          <svg id="loading-icon" width="3em" height="0ex" x="0px" y="0px" viewBox="0 0 313.3 321.4" style="enable-background:new 0 0 313.3 321.4;" xml:space="preserve">
             <path class="layer layer1" d="M157.1,0c3.8,0,7.9,1.5,11.4,3.2c45.6,21.1,91.2,42.4,136.7,63.8c3.3,1.5,8,2.1,8.1,7c0.1,5-4.7,5.6-7.9,7.1
           c-45.8,21.5-91.7,42.9-137.6,64.3c-7.4,3.4-14.8,3.5-22.2,0C99,123.6,52.3,101.9,5.8,80c-2.4-1.1-5.4-4-5.4-6c0-2,3.1-4.8,5.5-5.9
           C52.4,46.2,99.1,24.4,145.8,2.8C149.1,1.2,154.5,0,157.1,0z"/>
@@ -113,6 +113,7 @@
       $(function(){
 
         function reset(){
+//          console.log('reset invoked');
           $('#guesswho').show();
           $('#submit').show();
           $('#play-next').hide();
@@ -120,6 +121,7 @@
           $('#counter').show();
           var selected = $("input[type='radio'][name='name']:checked").prop('checked', false);
           right_first_time = true;
+//          console.log('variables set');
 
           if ( num_images > 2 ) {
             while (true) {
@@ -132,11 +134,43 @@
             ++num_seen;
             $('#counter').html('Image ' + num_seen + ' of ' + num_images + '.');
             $('#loading-icon').show();
+            console.log('Image attributes before load (margin top, margin bottom, padding):');
+            console.log($('#image').css("marginTop"));
+            console.log($('#image').css("marginBottom"));
+            console.log($('#image').css("paddingTop"));
+            console.log('Figure attributes before load (margin top, margin bottom, padding):');
+            console.log($('#the-figure').css("marginTop"));
+            console.log($('#the-figure').css("marginBottom"));
+            console.log($('#the-figure').css("paddingTop"));
+            alert('image about to be loaded');
             $('#image').load( function(){
+              console.log($('#the-figure').attr("marginTop", 0));
+              console.log($('#image').attr("marginTop", 0));
+
+              $('#image').attr("display","hidden");
+              console.log('Image display attribute:');
+              console.log($('#image').css("display"));
               $('#loading-icon').hide();
               $('#image').removeClass('no-border-class');
+
               console.log('image loaded');
-              }).attr('src', 'img/' + images[answer_index]);
+              console.log('Image attributes during load (margin top, margin bottom, padding):');
+              console.log($('#image').css("marginTop"));
+              console.log($('#image').css("marginBottom"));
+              console.log($('#image').css("paddingTop"));
+              console.log('Figure attributes during load (margin top, margin bottom, padding):');
+              console.log($('#the-figure').css("marginTop"));
+              console.log($('#the-figure').css("marginBottom"));
+              console.log($('#the-figure').css("paddingTop"));
+            }).attr('src', 'img/' + images[answer_index]);
+            console.log('Image attributes after load (margin top, margin bottom, padding):');
+            console.log($('#image').css("marginTop"));
+            console.log($('#image').css("marginBottom"));
+            console.log($('#image').css("paddingTop"));
+            console.log('Figure attributes after load (margin top, margin bottom, padding):');
+            console.log($('#the-figure').css("marginTop"));
+            console.log($('#the-figure').css("marginBottom"));
+            console.log($('#the-figure').css("paddingTop"));
             $('#notice').html('');
             $('#play-next').hide();
 
@@ -185,19 +219,22 @@
         };
 
         $('#play-next').click(function(e){
+//          console.log('play next: ' + e.type);
+//          alert('play next: ' + e.type);
           e.preventDefault();
           reset();
           return false;
         });
 
         $('#submit').click(function(e){
+//          console.log('submit: ' + e.type);
           e.preventDefault();
           var selected = $("input[type='radio'][name='name']:checked").val();
           if ( selected == images[answer_index] ) {
             if (num_seen == images.length) {
               if ( right_first_time ) {
                 ++num_right_guesses;
-                console.log('Score: ' + num_right_guesses + '/' + num_seen);
+//                console.log('Score: ' + num_right_guesses + '/' + num_seen);
               }
               $('#notice').html('Yay, this is ' + data[selected] + ' &mdash; well done!');
               $('#score').html('You scored ' + num_right_guesses + '/' + num_images + '!');
@@ -222,7 +259,7 @@
           } else {
             $('#notice').html('Please pick an option!');
           }
-          console.log('Score: ' + num_right_guesses + '/' + num_seen);
+//          console.log('Score: ' + num_right_guesses + '/' + num_seen);
           return false;
         });
 
