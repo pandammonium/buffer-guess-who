@@ -101,9 +101,9 @@
       var right_first_time;
       var num_images = images.length;
 
-      $(function(){
+      $(function() {
 
-        function reset(){
+        function reset() {
 //          console.log('reset invoked');
           $('#guesswho').show();
           $('#submit').show();
@@ -114,18 +114,24 @@
           right_first_time = true;
 //          console.log('variables set');
 
-          if ( num_images < 3 ) {
-            console.log('Make sure there are at least three images given in \'data\'.  You supplied ' + images.length + ':\n' + images);
-            alert('Not enough images.  At least three images are required.');
+          // Any fewer than this, and weird behaviour is seen:
+          const numImagesReqd = 7;
+          if ( num_images < numImagesReqd ) {
+            console.error('Make sure there are at least ' + numImagesReqd + ' images given in \'data\'.  You supplied ' + images.length + ':\n' + images);
+            alert('Not enough images.  At least ' + numImagesReqd + ' images are required.');
             return false;
           } else {
             while (true) {
               answer_index = Math.floor ( num_images * Math.random() );
+              // console.log('Answer index: ' + answer_index + '; seen: ' + seen[answer_index]);
               if ( !seen[answer_index] ) {
                 break;
+              } else {
+                // console.log(seen[answer_index]);
               }
             }
             seen[answer_index] = true;
+            // console.log('Answer index: ' + answer_index + '; seen: ' + seen[answer_index]);
             ++num_seen;
             $('#counter').html('Image ' + num_seen + ' of ' + num_images + '.');
             $('#loading-icon').show();
@@ -209,53 +215,55 @@
           }
         };
 
-        $('#play-next').click(function(e){
-//          console.log('play next: ' + e.type);
-//          alert('play next: ' + e.type);
-          e.preventDefault();
+        $('#play-next').click(function(event) {
+         console.log('play next: ' + event.type);
+//          alert('play next: ' + event.type);
+          event.preventDefault();
           reset();
           return false;
         });
 
-        $('#submit').click(function(e){
-//          console.log('submit: ' + e.type);
-          e.preventDefault();
+        $('#submit').click(function(event) {
+         console.log('submit: ' + event.type);
+          event.preventDefault();
           var selected = $("input[type='radio'][name='name']:checked").val();
-          const correctMessage = '🥳 You correctly recognised ' + data[selected].who + (data[selected].what ? ', a ' + data[selected].what : '') + '.  Well done!';
-          const incorrectMessage = '🤨 Are you sure this is ' + data[selected].who + '?  Try again!';
-          if ( selected == images[answer_index] ) {
-            if (num_seen == images.length) {
-              if ( right_first_time ) {
-                ++num_right_guesses;
-               console.log('Score: ' + num_right_guesses + '/' + num_seen);
-              }
-              console.log(data[selected]);
-              $('#notice').html(correctMessage);
-              $('#score').html('You scored ' + num_right_guesses + '/' + num_images + '!');
-              $('#play-next').hide();
-              $('#guesswho').hide();
-              $('#submit').hide();
-              $('#start-again').show();
-              $('#counter').hide();
-              return;
-            } else {
-              if ( right_first_time ) {
-                ++num_right_guesses;
-              }
-              console.log(data[selected]);
-              $('#notice').html(correctMessage);
-              $('#play-next').show();
-              $('#guesswho').hide();
-              $('#submit').hide();
-            }
-          } else if ( selected ) {
-            right_first_time = false;
-            $('#notice').html(incorrectMessage);
+          console.log('Selected: ' + selected);
+          if (typeof selected === 'undefined') {
+            return false;
           } else {
-            $('#notice').html('Please pick an option!');
+            const correctMessage = '🥳 You correctly recognised ' + data[selected].who + (data[selected].what ? ', a ' + data[selected].what : '') + '.  Well done!';
+            const incorrectMessage = '🤨 Are you sure this is ' + data[selected].who + '?  Try again!';
+            if ( selected == images[answer_index] ) {
+              if (num_seen == images.length) {
+                if ( right_first_time ) {
+                  ++num_right_guesses;
+                }
+                // console.log(data[selected]);
+                $('#notice').html(correctMessage);
+                $('#score').html('You scored ' + num_right_guesses + '/' + num_images + ', which is ' + (num_right_guesses + '/' + num_images * 100) + '&nbsp;&#37;');
+                $('#play-next').hide();
+                $('#guesswho').hide();
+                $('#submit').hide();
+                $('#start-again').show();
+                $('#counter').hide();
+                return;
+              } else {
+                if ( right_first_time ) {
+                  ++num_right_guesses;
+                }
+                // console.log(data[selected]);
+                $('#notice').html(correctMessage);
+                $('#play-next').show();
+                $('#guesswho').hide();
+                $('#submit').hide();
+              }
+            } else if ( selected ) {
+              right_first_time = false;
+              $('#notice').html(incorrectMessage);
+            }
+            console.log('Score: ' + num_right_guesses + '/' + num_seen);
+            return false;
           }
-         console.log('Score: ' + num_right_guesses + '/' + num_seen);
-          return false;
         });
 
         reset();
