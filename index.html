@@ -69,7 +69,6 @@
     <script type="text/javascript">
 
       var data = {
-        // Need at least three images to prevent an infinite loop because three options are given.
         // NB Use underscores in file names to separate multiple people and only multiple people.
         'caity_colin.jpg'         : {who: 'Caity and Colin'},
         'nicole_john.jpg'         : {who: 'Nicole and John (aka Rusty)'},
@@ -240,7 +239,7 @@
                 }
                 // console.log(data[selected]);
                 $('#notice').html(correctMessage);
-                $('#score').html('You scored ' + num_right_guesses + '/' + num_images + ', which is ' + (num_right_guesses + '/' + num_images * 100) + '&nbsp;&#37;');
+                $('#score').html('You scored ' + num_right_guesses + '/' + num_images + ', which is ' + (num_right_guesses / num_images * 100) + '&nbsp;&#37;');
                 $('#play-next').hide();
                 $('#guesswho').hide();
                 $('#submit').hide();
