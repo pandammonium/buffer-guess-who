@@ -1,5 +1,5 @@
 # buffer-guess-who
-Guess Who game for Buffer people and their WAGs and HABs.
+A Guess Who game for Bufferoos and their Bufferees.
 
 ## Instructions
 
