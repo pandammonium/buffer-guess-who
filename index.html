@@ -70,7 +70,7 @@
 
       var data = {
         // Need at least three images to prevent an infinite loop because three options are given.
-        // Only use underscores in file names to separate multiple people.
+        // NB Use underscores in file names to separate multiple people and only multiple people.
         'caity_colin.jpg'         : {who: 'Caity and Colin'},
         'nicole_john.jpg'         : {who: 'Nicole and John (aka Rusty)'},
         'mike_maria-518x572.jpg'  : {who: 'Mike and Maria'},
@@ -138,7 +138,7 @@
             // console.log($('#the-figure').css("marginBottom"));
             // console.log($('#the-figure').css("paddingTop"));
             // alert('image about to be loaded');
-            $('#image').load( function(){
+            $('#image').load( function() {
               // console.log($('#the-figure').attr("marginTop", 0));
               // console.log($('#image').attr("marginTop", 0));
 
@@ -192,8 +192,8 @@
               }
             }
             choices[index] = true;
-            var image_choices = _.map(_.keys(choices), function(c){
-              return images[c];
+            var image_choices = _.map(_.keys(choices), function(choice){
+              return images[choice];
             });
 
             image_choices = _.shuffle(image_choices);
@@ -221,7 +221,6 @@
 //          console.log('submit: ' + e.type);
           e.preventDefault();
           var selected = $("input[type='radio'][name='name']:checked").val();
-
           const correctMessage = '🥳 You correctly recognised ' + data[selected].who + (data[selected].what ? ', a ' + data[selected].what : '') + '.  Well done!';
           const incorrectMessage = '🤨 Are you sure this is ' + data[selected].who + '?  Try again!';
           if ( selected == images[answer_index] ) {
